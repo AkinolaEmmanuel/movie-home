@@ -49,13 +49,17 @@ app.get('/movies/search', async (req, res) => {
         res.status(500).send('Server Error');
     }
 });
-
+// Render health check endpoint
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok' });
+});
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.get('*', (req, res) => {
         res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
 });
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
