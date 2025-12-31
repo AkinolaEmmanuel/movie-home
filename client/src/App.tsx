@@ -13,10 +13,10 @@ function App() {
 
   const fetchMovies = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-
+   
     if (!search) return;
-    
+    setLoading(true);
+    setError(null);
     try {
       const response = await fetch(`${API_URL}/movies/search?s=${search}`);
       const data = await response.json();

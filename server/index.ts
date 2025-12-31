@@ -24,6 +24,13 @@ app.use(express.json());
 
 
 
+// Render health check endpoint
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok' });
+});
+
+
+
 //Get Movie by Search Query
 app.get('/movies/search', async (req, res) => {
     try {
@@ -50,12 +57,8 @@ app.get('/movies/search', async (req, res) => {
         res.status(500).send('Server Error');
     }
 });
-// Render health check endpoint
-app.get('/health', (req, res) => {
-  res.json({ status: 'ok' });
-});
 
-const clientDistPath = path.join(__dirname, '../client/dist');
+const clientDistPath = path.join(__dirname, '../../client/dist');
 
 app.use(express.static(clientDistPath));
 

@@ -14,11 +14,22 @@
   justify-content: center;
 }
 
-
 .input-container {
   position: relative;
   width: 300px;
- 
+}
+
+.error-message {
+  position: absolute;
+  top: -30px;
+  left: 0;
+  right: 0;
+  color: #ff3c00;
+  font-size: 14px;
+  margin: 0;
+  padding: 5px;
+  background-color: rgba(255, 60, 0, 0.1);
+  border-radius: 5px;
 }
 
 .input-container input {
@@ -27,6 +38,11 @@
   border-radius: 10px 0 0 10px;
   border: none;
   outline: none;
+}
+
+.input-container input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .input-container button {
@@ -40,6 +56,16 @@
   color: white;
   padding: 0 15px;
   cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.input-container button:hover:not(:disabled) {
+  background-color: #e63600;
+}
+
+.input-container button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .search {
@@ -51,6 +77,15 @@
   width: 20px;
   height: 20px;
   animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .movies-container {
@@ -73,10 +108,28 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s;
+  overflow: hidden;
+  background-color: #1a1a1a;
 }
 
-.error-message {
-  color: red;
-  font-weight: bold;
-  margin-top: 20px;
+.movie-card:hover {
+  transform: translateY(-5px);
+}
+
+.movie-card img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.movie-card h3 {
+  padding: 10px;
+  margin: 10px 0 5px 0;
+  font-size: 18px;
+}
+
+.movie-card p {
+  padding: 0 10px 10px 10px;
+  margin: 0;
+  color: #999;
 }
