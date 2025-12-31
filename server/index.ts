@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import axios from 'axios';
 import path from 'path';
+import fs from 'fs';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -54,10 +55,18 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
-app.use(express.static(path.join(__dirname, '../client/dist')));
+const clientDistPath = path.join(__dirname, '../client/dist');
+
+app.use(express.static(clientDistPath));
 
 app.get(/.*/, (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/dist', 'index.html'));
+        const indexPath = path.join(clientDistPath, 'index.html');
+        if (fs.existsSync(indexPath)) {
+            res.sendFile(indexPath);
+        } else {
+            console.error('Missing client index.html at', indexPath);
+            res.status(404).send('index.html not found');
+        }
 });
 
 
