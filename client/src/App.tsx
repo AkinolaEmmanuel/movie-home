@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 function App() {
 
-  const API_URL = import.meta.env.VITE_API_URL;
+  const API_URL = import.meta.env.VITE_API_URL || '';
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -19,18 +19,16 @@ function App() {
     setError(null);
     try {
       const response = await fetch(`${API_URL}/movies/search?s=${search}`);
-      const data = await response.json();
 
-      if (response.ok) {
-        setMovies(data.Search || []);
-        setLoading(false);
-        setError(null);
-      } else {
-        setError(data.error || 'Error fetching movies');
+      if (!response.ok) {
+        setError(response.statusText || 'Error fetching movies');
         setMovies([]);
-      }
+      } 
+
+      const data = await response.json();
+      setMovies(data.Search || []);
     } catch (error) {
-        setError(error as string);
+        setError(error instanceof Error ? error.message : 'Unknown error');
         setMovies([]);
     } finally {
         setLoading(false);
