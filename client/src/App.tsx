@@ -12,31 +12,31 @@ interface Movie {
   Poster: string;
 }
 
-interface MovieDetails {
-  Title: string;
-  Year: string;
-  Rated: string;
-  Released: string;
-  Runtime: string;
-  Genre: string;
-  Director: string;
-  Writer: string;
-  Actors: string;
-  Plot: string;
-  Language: string;
-  Country: string;
-  Awards: string;
-  Poster: string;
-  Ratings: Array<{ Source: string; Value: string }>;
-  Metascore: string;
-  imdbRating: string;
-  imdbVotes: string;
-  imdbID: string;
-  Type: string;
-  BoxOffice: string;
-  Production: string;
-  Response: string;
-}
+// interface MovieDetails {
+//   Title: string;
+//   Year: string;
+//   Rated: string;
+//   Released: string;
+//   Runtime: string;
+//   Genre: string;
+//   Director: string;
+//   Writer: string;
+//   Actors: string;
+//   Plot: string;
+//   Language: string;
+//   Country: string;
+//   Awards: string;
+//   Poster: string;
+//   Ratings: Array<{ Source: string; Value: string }>;
+//   Metascore: string;
+//   imdbRating: string;
+//   imdbVotes: string;
+//   imdbID: string;
+//   Type: string;
+//   BoxOffice: string;
+//   Production: string;
+//   Response: string;
+// }
 
 const API_URL = import.meta.env.VITE_API_URL;
 

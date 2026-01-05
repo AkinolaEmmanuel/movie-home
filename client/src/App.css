@@ -491,8 +491,8 @@ body {
   color: white;
 }
 
-.badge-secondary {
-}
+/* .badge-secondary {
+} */
 
 .dark-mode .badge-secondary {
   background-color: #333;
@@ -628,8 +628,8 @@ body {
   color: #ff3c00;
 }
 
-.awards-text {
-}
+/* .awards-text {
+} */
 
 .dark-mode .awards-text {
   color: #ccc;
