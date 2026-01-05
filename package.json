@@ -13,7 +13,6 @@
     "start": "node server/dist/index.js",
     "deploy": "npm run install-client && npm run install-server && npm run build-client && npm run build-server && npm run start",
     "postinstall": "npm --prefix client install --no-audit --no-fund && npm --prefix client run build && npm --prefix server install --no-audit --no-fund && npm --prefix server run build"
-    
   },
   "repository": {
     "type": "git",

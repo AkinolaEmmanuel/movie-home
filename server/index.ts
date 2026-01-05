@@ -58,6 +58,36 @@ app.get('/movies/search', async (req, res) => {
     }
 });
 
+//Get Movie by ID
+app.get('/movies/:id', async (req, res) => {
+    try {
+
+        const movieId = req.params.id;
+        if (!movieId) {
+            return res.status(400).send('Bad Request: Missing movie ID');
+        }
+
+        const response = await axios.get(`${API_URL}/`, {
+            params: { i: movieId, apikey: API_KEY, plot: 'full' }
+        });
+
+        if (response.status !== 200) {
+            return res.status(response.status).send('Error fetching data from API');
+        }
+
+        if (response.data && response.data.Response === 'False') {
+            return res.status(400).json({ error: response.data.Error || 'Error fetching data from API' });
+        }
+
+        res.json(response.data);
+
+    } catch (error: any) {
+        console.error('Movie by ID error:', error?.message || error);
+        res.status(500).send('Server Error');
+    }
+});
+
+// Serve static files from the client build
 const clientDistPath = path.join(__dirname, '../../client/dist');
 
 app.use(express.static(clientDistPath));
